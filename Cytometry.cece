@@ -55,8 +55,8 @@
             layer-dynamics="fluid"
             height="40um"
     >
-        <boundary name="i1" type="inlet" position="top" offset="-500um" size="1000um" inlet-flow-rate="5nl/s" inlet-profile="constant" />
-        <boundary name="i2" type="inlet" position="bottom" offset="-500um" size="1000um" inlet-flow-rate="10nl/s" inlet-profile="constant" />
+        <boundary name="i1" type="inlet" position="top" offset="-500um" size="1000um" inlet-flow-rate="0.005ul/s" inlet-profile="constant" />
+        <boundary name="i2" type="inlet" position="bottom" offset="-500um" size="1000um" inlet-flow-rate="0.010ul/s" inlet-profile="constant" />
 
         <boundary name="o1" type="outlet" position="top" offset="500um" size="1000um" />
         <boundary name="o2" type="outlet" position="bottom" offset="500um" size="1000um" />
