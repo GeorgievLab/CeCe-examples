@@ -38,10 +38,10 @@
 
     <!-- Define diffusion module -->
     <module name="diffusion" grid="301 91" inner-iterations="1">
-        <signal name="GFP" diffusion-rate="10um2/s" degradation-rate="0.1/s" color="green" saturation="13nM" />
-        <signal name="RFP" diffusion-rate="10um2/s" degradation-rate="0.1/s" color="red" saturation="13nM" />
-        <signal name="CFP" diffusion-rate="10um2/s" degradation-rate="0.1/s" color="cyan" saturation="13nM" />
-        <signal name="YFP" diffusion-rate="10um2/s" degradation-rate="0.1/s" color="yellow" saturation="13nM" />
+        <signal name="GFP" diffusion-rate="10um2/s" degradation-rate="0.1/s" color="green" saturation="0.013uM" />
+        <signal name="RFP" diffusion-rate="10um2/s" degradation-rate="0.1/s" color="red" saturation="0.013uM" />
+        <signal name="CFP" diffusion-rate="10um2/s" degradation-rate="0.1/s" color="cyan" saturation="0.013uM" />
+        <signal name="YFP" diffusion-rate="10um2/s" degradation-rate="0.1/s" color="yellow" saturation="0.013uM" />
     </module>
 
     <!-- Object generator -->

@@ -20,9 +20,9 @@
 
     <!-- Define diffusion module -->
     <module name="diffusion" grid="641 401" inner-iterations="2">
-        <signal name="GFP" diffusion-rate="50um2/s" degradation-rate="0.01/s" color="green"  saturation="10nM" />
-        <signal name="RFP" diffusion-rate="50um2/s" degradation-rate="0.01/s" color="red"    saturation="10nM" />
-        <signal name="YFP" diffusion-rate="50um2/s" degradation-rate="0.01/s" color="yellow" saturation="10nM" />
+        <signal name="GFP" diffusion-rate="50um2/s" degradation-rate="0.01/s" color="green"  saturation="0.010uM" />
+        <signal name="RFP" diffusion-rate="50um2/s" degradation-rate="0.01/s" color="red"    saturation="0.010uM" />
+        <signal name="YFP" diffusion-rate="50um2/s" degradation-rate="0.01/s" color="yellow" saturation="0.010uM" />
     </module>
 
     <!-- Define streamlines -->
