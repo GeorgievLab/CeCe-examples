@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!-- Simulation definition -->
+<!-- Parameters cannot be used in simulation element attributes due to historical reasons -->
 <simulation world-size="20um 20um" dt="1s" iterations="5000">
 
     <!-- Signal detection thresholds -->
+    <!--
+      Parameters can be changed by passing as additional arguments in command prompt:
+      `cece-cli -p DR "30um2/s" -p L 10 <simulation-file>`
+    -->
     <parameter name="T1" value="0.15uM" />
     <parameter name="T2" value="0.15uM" />
+    <parameter name="DR" value="50um2/s" />
+    <parameter name="L" value="5" />
 
     <!-- Used plugins -->
     <plugin name="diffusion" />
@@ -16,9 +23,10 @@
         Only defined signals are allowed to be used in diffusion.
     -->
     <module name="diffusion" grid="100" background="black">
-        <signal name="GFP" diffusion-rate="50um2/s" degradation-rate="0.001/s" color="green"  saturation="1uM" />
-        <signal name="RFP" diffusion-rate="50um2/s" degradation-rate="0.001/s" color="red"    saturation="1uM" />
-        <signal name="YFP" diffusion-rate="50um2/s" degradation-rate="0.001/s" color="yellow" saturation="1uM" />
+        <!-- Parameter value can be placed everywhere as attribute value in format '{$<parameter name>}' -->
+        <signal name="GFP" diffusion-rate="{$DR}" degradation-rate="0.001/s" color="green"  saturation="1uM" />
+        <signal name="RFP" diffusion-rate="{$DR}" degradation-rate="0.001/s" color="red"    saturation="1uM" />
+        <signal name="YFP" diffusion-rate="{$DR}" degradation-rate="0.001/s" color="yellow" saturation="1uM" />
     </module>
 
     <!-- Produce GFP constitutive -->
@@ -31,6 +39,8 @@
     <!-- Produce RFP in proximity of YFP in environment -->
     <program name="make-rfp" language="stochastic-reactions">
 <![CDATA[
+        # Everything after hash is a comment until end of line.
+        # The expression `par T1` represents parameter value.
         if env YFP > par T1: null > 50 > env RFP;
 ]]>
     </program>
@@ -43,8 +53,11 @@
     </program>
 
     <!-- Create yeast cells -->
-    <object class="cell.Yeast" position="0 5um"  programs="make-rfp cell.store-molecules" />
-    <object class="cell.Yeast" position="0 0"    programs="make-yfp cell.store-molecules" />
-    <object class="cell.Yeast" position="0 -5um" programs="make-gfp cell.store-molecules" />
+    <!--
+      Parameter value expression is replaced in-place and the result is then processed.
+    -->
+    <object class="cell.Yeast" position="0 {$L}um"  programs="make-rfp cell.store-molecules" />
+    <object class="cell.Yeast" position="0 0"       programs="make-yfp cell.store-molecules" />
+    <object class="cell.Yeast" position="0 -{$L}um" programs="make-gfp cell.store-molecules" />
 </simulation>
 
